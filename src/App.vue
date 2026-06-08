@@ -63,7 +63,6 @@ const deleteSelectedItems = () => {
 
 <template>
   <main class="w-screen max-h-screen flex flex-col items-center gap-2">
-    {{ selectedTodos }}
     <TitleComponent />
     <ActionComponent
       :selected-todos="selectedTodos"

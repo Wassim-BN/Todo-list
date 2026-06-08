@@ -26,7 +26,7 @@ const props = defineProps({
 
 <template>
   <div class="relative flex gap-1">
-    <button @click="toggleActionsMenu"><ph-dots-three-vertical /></button>
+    <button @click="toggleActionsMenu" class="cursor-pointer z-10 hover:bg-gray-200 rounded-2xl active:bg-gray-300 transition-colors duration-300 ease-in-out"><ph-dots-three-vertical /></button>
     <div
       v-if="isActionsMenuOpen"
       class="absolute flex gap-2 -top-2 -left-25 bg-white rounded shadow px-2 py-1 z-10"
@@ -50,6 +50,5 @@ const props = defineProps({
         <ph-warning v-else class="text-white group-hover:text-gray-300" />
       </button>
     </div>
-    <div class="absolute bg-gray-200 w-3.5 h-3.5 top- left- -z-1 rounded-2xl"></div>
   </div>
 </template>

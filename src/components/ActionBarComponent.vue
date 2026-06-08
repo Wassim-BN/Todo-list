@@ -27,7 +27,7 @@ const props = defineProps({
     <div class="flex gap-1">
       <div>{{ props.selectedTodos.length }}</div>
       <button
-        title="Select"
+        title="Delete the selection 🗑️"
         class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
         @click="() => props.deleteSelectedItems(selectedTodos)"
       >
@@ -45,7 +45,8 @@ const props = defineProps({
       placeholder="Todo text"
     />
     <button
-      class="px-2 py-1 bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex"
+      title="Add todo 📆"
+      class="px-2 py-1 bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex active:bg-green-300 transition-colors duration-300 ease-in-out"
       @click="() => props.addItem(todoText)"
     >
       <ph-plus class="text-white" />

@@ -33,17 +33,17 @@ const props = defineProps({
       <li
         v-for="todo in props.todos"
         :key="todo.id"
-        class="px-2 py-1 w-full flex justify-center items-center bg-green-100 rounded z-1"
+        class="px-2 py-1 w-full flex justify-center items-center bg-green-100 rounded"
       >
         <div class="flex justify-between items-center w-full">
           <div class="flex items-center gap-2">
-            <div class=" relative flex items-center h-6 hover:group">
+            <!-- Checkbox -->
+            <div class="relative flex items-center h-5 w-5  hover:bg-gray-200 rounded-2xl active:bg-gray-300 transition-colors duration-300 ease-in-out">
               <input
                 type="checkbox"
-                class="hover:bg-green-200 cursor-pointer z-10"
+                class="cursor-pointer z-10 "
                 @change="(id) => toggleSelectedItem(todo.id)"
               />
-              <div class="absolute hover:bg-gray-200 w-5 h-5 rounded-2xl top-0.5 -left-1 hover:group-first-of-type:bg-gray-200"></div>
             </div>
 
             <div class="flex items-center gap-2">
@@ -58,6 +58,7 @@ const props = defineProps({
           <action-bar-context-menu-component
             :todo="todo"
             :toggle-item-status="(id) => toggleItemStatus(id)"
+            :remove-item="removeItem"
           />
         </div>
       </li>

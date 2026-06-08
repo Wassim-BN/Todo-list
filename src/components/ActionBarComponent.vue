@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { PhTrash } from '@phosphor-icons/vue'
-import { PhCheck } from '@phosphor-icons/vue'
+import { PhTrash, PhPlus } from '@phosphor-icons/vue'
 
 const todoText = ref('')
 
@@ -27,14 +26,19 @@ const props = defineProps({
     </div>
   </div>
   <div
-    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded-xl prl-2 cursor-alias"
+    class="bg-gray-100 w-xl gap-1 px-2 py-1 flex justify-between items-center rounded cursor-alias"
   >
-    <input v-model="todoText" type="text" class="text-black w-full" placeholder="Todo text" />
+    <input
+      v-model="todoText"
+      type="text"
+      class="text-black w-full outline-none"
+      placeholder="Todo text"
+    />
     <button
-      class="bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex"
-      @click="(text) => props.addItem(todoText)"
+      class="px-2 py-1 bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex"
+      @click="() => props.addItem(todoText)"
     >
-      <PhCheck :size="22" />
+      <ph-plus class="text-white" />
     </button>
   </div>
 </template>

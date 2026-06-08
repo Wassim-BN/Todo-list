@@ -9,20 +9,30 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  selectedTodos: {
+    type: Array,
+    default: () => [],
+  },
+  deleteSelectedItems: {
+    type: Function,
+    default: () => {},
+  },
 })
 </script>
 <template>
   <div
-    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded-xl prl-2 cursor-alias"
+    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded-xl prl-2"
   >
     <div><span>Actions</span></div>
     <div class="flex gap-1">
-      <button class="bg-red-600 cursor-pointer hover:bg-red-700 rounded-md flex">
-        <PhTrash :size="22" />
+      <div>{{ props.selectedTodos.length }}</div>
+      <button
+        title="Select"
+        class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
+        @click="() => props.deleteSelectedItems(selectedTodos)"
+      >
+        <PhTrash class="text-white" />
       </button>
-      <!-- <button class="bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex">
-        <PhCheck :size="22" />
-      </button> -->
     </div>
   </div>
   <div

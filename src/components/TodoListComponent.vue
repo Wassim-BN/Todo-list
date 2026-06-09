@@ -28,7 +28,7 @@ const props = defineProps({
           <div class="flex items-center gap-2">
             <!-- Checkbox -->
             <div
-              class="relative flex items-center h-5 w-5 hover:bg-gray-200 rounded-2xl active:bg-gray-300 transition-colors duration-300 ease-in-out"
+              class="relative flex items-center h-5 w-5 rounded-2xl hover:bg-gray-200 active:bg-gray-300 transition-colors duration-300 ease-in-out"
             >
               <input
                 type="checkbox"

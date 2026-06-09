@@ -1,16 +1,21 @@
 <script setup>
 import { ref } from 'vue'
-import { PhTrash, PhPlus } from '@phosphor-icons/vue'
+import { PhTrash, PhPlus, PhArrowClockwise } from '@phosphor-icons/vue'
 
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
 
 const todoText = ref('')
 const todosStore = useTodosStore()
+
+const handleCreateTodo = async (text) => {
+  await todosStore.createTodo(text)
+  await todosStore.fetchTodos()
+}
 </script>
 <template>
   <div
-    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded-xl prl-2"
+    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded prl-2"
   >
     <div><span>Actions</span></div>
     <div class="flex gap-1">
@@ -35,10 +40,17 @@ const todosStore = useTodosStore()
     />
     <button
       title="Add todo 📆"
-      class="px-2 py-1 bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex active:bg-green-300 transition-colors duration-300 ease-in-out"
-      @click="() => todosStore.addItem(todoText)"
+      class="px-2 py-1 rounded-md flex transition-colors duration-300 ease-in-out"
+      :class="
+        todosStore.isLoading
+          ? 'bg-gray-500 cursor-not-allowed'
+          : 'bg-green-600  hover:bg-green-700 active:bg-green-300 cursor-pointer'
+      "
+      :disabled="todosStore.isLoading"
+      @click="() => handleCreateTodo(todoText)"
     >
-      <ph-plus class="text-white" />
+      <ph-arrow-clockwise v-if="todosStore.isLoading" class="text-white animate-spin" />
+      <ph-plus v-else class="text-white" />
     </button>
   </div>
 </template>

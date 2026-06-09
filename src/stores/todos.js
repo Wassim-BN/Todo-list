@@ -1,9 +1,10 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-import { useFetchTodos } from '@/composables/useTodos'
+import { useFetchTodos, useCreateTodo, useEditTodo, useDeleteTodo } from '@/composables/useTodos'
 
 export const useTodosStore = defineStore('todos', () => {
+  const isLoading = ref(false)
   const todos = ref([])
   const selectedTodos = ref([])
 
@@ -60,11 +61,62 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   const fetchTodos = async () => {
-    const data = await useFetchTodos()
-    todos.value = data
+    try {
+      const data = await useFetchTodos()
+      todos.value = data
+    } catch (error) {
+      todos.value = []
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const createTodo = async (text) => {
+    isLoading.value = true
+    try {
+      const newTodo = await useCreateTodo(text)
+    } catch (error) {
+      //
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const editTodo = async (id, text) => {
+    isLoading.value = true
+    try {
+      await useEditTodo(id, text)
+    } catch (error) {
+      //
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const deleteTodo = async (id) => {
+    isLoading.value = true
+    try {
+      await useDeleteTodo(id)
+    } catch (error) {
+      //
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const validTodo = async (id) => {
+    isLoading.value = true
+    try {
+      await useValidTodo(id)
+    } catch (error) {
+      //
+    } finally {
+      isLoading.value = false
+    }
   }
 
   return {
+    isLoading,
     todos,
     selectedTodos,
     uncompletedTodos,
@@ -76,5 +128,9 @@ export const useTodosStore = defineStore('todos', () => {
     toggleSelectedItem,
     deleteSelectedItems,
     fetchTodos,
+    createTodo,
+    editTodo,
+    deleteTodo,
+    validTodo,
   }
 })

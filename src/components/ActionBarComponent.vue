@@ -2,22 +2,11 @@
 import { ref } from 'vue'
 import { PhTrash, PhPlus } from '@phosphor-icons/vue'
 
-const todoText = ref('')
+// Stores
+import { useTodosStore } from '@/stores/todos.js'
 
-const props = defineProps({
-  addItem: {
-    type: Function,
-    required: true,
-  },
-  selectedTodos: {
-    type: Array,
-    default: () => [],
-  },
-  deleteSelectedItems: {
-    type: Function,
-    default: () => {},
-  },
-})
+const todoText = ref('')
+const todosStore = useTodosStore()
 </script>
 <template>
   <div
@@ -25,11 +14,11 @@ const props = defineProps({
   >
     <div><span>Actions</span></div>
     <div class="flex gap-1">
-      <div>{{ props.selectedTodos.length }}</div>
+      <div>{{ todosStore.selectedTodos.length }}</div>
       <button
         title="Delete the selection 🗑️"
         class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
-        @click="() => props.deleteSelectedItems(selectedTodos)"
+        @click="() => todosStore.deleteSelectedItems(selectedTodos)"
       >
         <PhTrash class="text-white" />
       </button>
@@ -47,7 +36,7 @@ const props = defineProps({
     <button
       title="Add todo 📆"
       class="px-2 py-1 bg-green-600 cursor-pointer hover:bg-green-700 rounded-md flex active:bg-green-300 transition-colors duration-300 ease-in-out"
-      @click="() => props.addItem(todoText)"
+      @click="() => todosStore.addItem(todoText)"
     >
       <ph-plus class="text-white" />
     </button>

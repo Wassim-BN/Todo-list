@@ -1,7 +1,13 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
-import { useFetchTodos, useCreateTodo, useEditTodo, useDeleteTodo } from '@/composables/useTodos'
+import {
+  useFetchTodos,
+  useCreateTodo,
+  useEditTodo,
+  useDeleteTodo,
+  // useValidTodo,
+} from '@/composables/useTodos'
 
 export const useTodosStore = defineStore('todos', () => {
   const isLoading = ref(false)
@@ -82,10 +88,10 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const editTodo = async (id, text) => {
+  const editTodo = async (id, text, completed, sequence) => {
     isLoading.value = true
     try {
-      await useEditTodo(id, text)
+      await useEditTodo(id, text, completed, sequence)
     } catch (error) {
       //
     } finally {
@@ -97,17 +103,6 @@ export const useTodosStore = defineStore('todos', () => {
     isLoading.value = true
     try {
       await useDeleteTodo(id)
-    } catch (error) {
-      //
-    } finally {
-      isLoading.value = false
-    }
-  }
-
-  const validTodo = async (id) => {
-    isLoading.value = true
-    try {
-      await useValidTodo(id)
     } catch (error) {
       //
     } finally {
@@ -131,6 +126,5 @@ export const useTodosStore = defineStore('todos', () => {
     createTodo,
     editTodo,
     deleteTodo,
-    validTodo,
   }
 })

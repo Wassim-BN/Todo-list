@@ -25,11 +25,10 @@ const handleDelete = async () => {
   await todosStore.fetchTodos()
 }
 
-const handleValidTodo = async () => {
-  await todosStore.validTodo(props.todo.id)
+const handleEditTodo = async () => {
+  await todosStore.editTodo(props.todo.id, props.todo.text, !props.todo.completed)
   await todosStore.fetchTodos()
 }
-
 </script>
 
 <template>
@@ -51,7 +50,7 @@ const handleValidTodo = async () => {
         <ph-trash class="text-white group-hover:text-gray-300" />
       </button>
       <button
-        @click="() => handleValidTodo(props.todo.id)"
+        @click="() => handleEditTodo(props.todo.id)"
         class="px-2 py-1 cursor-pointer transition-colors duration-300 ease-in-out group"
         :class="
           props.todo.completed

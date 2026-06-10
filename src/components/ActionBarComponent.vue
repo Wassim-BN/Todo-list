@@ -14,9 +14,7 @@ const handleCreateTodo = async (text) => {
 }
 </script>
 <template>
-  <div
-    class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded prl-2"
-  >
+  <div class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded prl-2">
     <div><span>Actions</span></div>
     <div class="flex gap-1">
       <div>{{ todosStore.selectedTodos.length }}</div>
@@ -42,12 +40,12 @@ const handleCreateTodo = async (text) => {
       title="Add todo 📆"
       class="px-2 py-1 rounded-md flex transition-colors duration-300 ease-in-out"
       :class="
-        todosStore.isLoading
+        todosStore.isLoading || todoText.trim().length <= 4
           ? 'bg-gray-500 cursor-not-allowed'
           : 'bg-green-600  hover:bg-green-700 active:bg-green-300 cursor-pointer'
       "
-      :disabled="todosStore.isLoading"
-      @click="() => handleCreateTodo(todoText)"
+      :disabled="todosStore.isLoading || !todoText"
+      @click="() => handleCreateTodo(todoText.trim())"
     >
       <ph-arrow-clockwise v-if="todosStore.isLoading" class="text-white animate-spin" />
       <ph-plus v-else class="text-white" />

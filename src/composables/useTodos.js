@@ -30,10 +30,10 @@ export const useCreateTodo = async (text) => {
   return await res.json()
 }
 
-export const useEditTodo = async (id, text) => {
+export const useEditTodo = async (id, text, completed, sequence) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-  const body = JSON.stringify({ text: text })
+  const body = JSON.stringify({ sequence: sequence, text: text, completed: completed })
   const res = await fetch(`${backendUrl}/todos/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
@@ -60,21 +60,4 @@ export const useDeleteTodo = async (id) => {
   }
 
   return await res.json()
-}
-
-export const useValidTodo = async (id) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
-
-  const body = JSON.stringify({})
-  const res = await fetch(`${backendUrl}/todos/${id}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: body,
-  })
-
-  if (!res.ok) {
-    return false
-  }
-
-  return true
 }

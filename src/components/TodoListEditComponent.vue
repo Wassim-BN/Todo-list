@@ -21,7 +21,12 @@ const isEditing = ref(false)
 const editedText = ref(props.todo.text)
 
 const handleEdit = async () => {
-  await todosStore.editTodo(props.todo.id, editedText.value, props.todo.completed)
+  await todosStore.editTodo(
+    props.todo.id,
+    editedText.value,
+    props.todo.completed,
+    props.todo.sequence,
+  )
   await todosStore.fetchTodos()
   isEditing.value = false
   editedText.value = props.todo.text
@@ -48,17 +53,23 @@ const handleCancelEdit = () => {
 
       <div class="flex items-center gap-2">
         <span>{{ props.todo.id }}</span>
-        
-        <div class="flex items-center gap-1" >
-          <span>{{ props.todo.sequence }}</span>
-          <button @click="handleCancelEdit" class="flex items-center w-3 h-3 bg-blue-400 rounded cursor-pointer"><ph-x class=""></ph-x></button>
+        <!-- <span>{{ props.todo.sequence }}</span> -->
+
+        <div class="flex items-center gap-1">
+          <input v-model="props.todo.sequence" @change="handleEdit" class="outline-none" />
+          <button
+            @click="handleEdit"
+            class="flex items-center w-3 h-3 bg-blue-400 rounded cursor-pointer"
+          >
+            <ph-x class=""></ph-x>
+          </button>
         </div>
 
         <div>
           <ph-check v-if="props.todo.completed" class="text-green-600" />
           <ph-warning v-else class="text-yellow-600" />
         </div>
-        
+
         <div>
           <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
             <input v-model="editedText" class="outline-none" />

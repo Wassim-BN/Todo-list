@@ -33,7 +33,7 @@ export const useCreateTodo = async (text) => {
 export const useEditTodo = async (id, text, completed, sequence) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-  const body = JSON.stringify({ sequence: sequence, text: text, completed: completed })
+  const body = JSON.stringify({ text: text, completed: completed, sequence: sequence })
   const res = await fetch(`${backendUrl}/todos/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

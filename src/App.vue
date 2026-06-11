@@ -5,6 +5,7 @@ import { onMounted } from 'vue'
 import TitleComponent from '@/components/TitleComponent.vue'
 import ActionComponent from '@/components/ActionBarComponent.vue'
 import TodoComponent from '@/components/TodoListComponent.vue'
+import ModalComponent from '@/components/ModalComponent.vue'
 
 // Store
 import { useTodosStore } from '@/stores/todos'
@@ -19,6 +20,7 @@ onMounted(() => {
   <main class="w-screen max-h-screen flex flex-col items-center gap-2">
     <TitleComponent />
     <ActionComponent />
+    <ModalComponent />
     <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">A faire</h1>
     <TodoComponent />
     <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">Terminées</h1>

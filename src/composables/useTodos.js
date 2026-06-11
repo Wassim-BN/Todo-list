@@ -61,3 +61,9 @@ export const useDeleteTodo = async (id) => {
 
   return await res.json()
 }
+
+export const useDeleteSelectedTodos = async (ids) => {
+  for (const id of ids) {
+    await useDeleteTodo(id)
+  }
+}

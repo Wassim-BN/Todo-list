@@ -9,8 +9,14 @@ const todoText = ref('')
 const todosStore = useTodosStore()
 
 const handleCreateTodo = async (text) => {
+  if (text.trim().length <= 4) return
   await todosStore.createTodo(text)
   await todosStore.fetchTodos()
+}
+
+const handleDeleteSelectedItems = () => {
+  todosStore.deleteSelectedItems()
+  todosStore.fetchTodos()
 }
 </script>
 <template>
@@ -21,7 +27,7 @@ const handleCreateTodo = async (text) => {
       <button
         title="Delete the selection 🗑️"
         class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
-        @click="() => todosStore.deleteSelectedItems(selectedTodos)"
+        @click="() => handleDeleteSelectedItems()"
       >
         <PhTrash class="text-white" />
       </button>
@@ -35,6 +41,7 @@ const handleCreateTodo = async (text) => {
       type="text"
       class="text-black w-full outline-none"
       placeholder="Todo text"
+      @click=""
     />
     <button
       title="Add todo 📆"

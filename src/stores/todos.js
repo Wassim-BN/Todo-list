@@ -60,11 +60,22 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   const deleteSelectedItems = () => {
-    selectedTodos.value.forEach((todoId) => {
-      removeItem(todoId)
-    })
-    selectedTodos.value = []
+    isLoading.value = true
+    try {
+      useDeleteSelectedTodos(selectedTodos.value)
+      selectedTodos.value = []
+    } catch (error) {
+      //
+    } finally {
+      isLoading.value = false
+    }
   }
+
+  //   selectedTodos.value.forEach((todoId) => {
+  //     removeItem(todoId)
+  //   })
+  //   selectedTodos.value = []
+  // }
 
   const fetchTodos = async () => {
     try {

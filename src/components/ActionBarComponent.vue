@@ -41,7 +41,7 @@ const handleDeleteSelectedItems = () => {
       type="text"
       class="text-black w-full outline-none"
       placeholder="Todo text"
-      @click=""
+      @click="isOpen = true"
     />
     <button
       title="Add todo 📆"

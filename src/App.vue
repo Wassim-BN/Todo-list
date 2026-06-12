@@ -29,9 +29,9 @@ onMounted(() => {
       <TitleComponent />
       <ActionComponent />
       <ModalComponent />
-      <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">A faire</h1>
+      <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">A faire 💻</h1>
       <TodoComponent />
-      <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">Terminées</h1>
+      <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">🎉🥳 Terminées 🥳🎉</h1>
       <TodoComponent :is-completed="true" />
     </main>
 </template>

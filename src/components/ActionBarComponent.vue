@@ -8,11 +8,7 @@ import ModalComponent from '@/components/ModalComponent.vue'
 
 const todoText = ref('')
 const todosStore = useTodosStore()
-const isOpen = ref(false)
-
-const handleModalOpen = () => {
-  isOpen.value = true
-}
+const isOpen = ref(todosStore.isOpen)
 
 const handleCreateTodo = async (text) => {
   if (text.trim().length <= 4) return
@@ -25,8 +21,13 @@ const handleDeleteSelectedItems = () => {
   todosStore.fetchTodos()
 }
 
+const handleModalOpen = () => {
+  todosStore.isOpen.value = true
+}
+
 </script>
 <template>
+  <!-- Action -->
   <div class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded prl-2">
     <div><span>Actions</span></div>
     <div class="flex gap-1">
@@ -40,30 +41,30 @@ const handleDeleteSelectedItems = () => {
       </button>
     </div>
   </div>
-  <div
-    class="bg-gray-100 w-xl gap-1 px-2 py-1 flex justify-center items-center rounded cursor-alias"
-  >
+  <!-- Todo Text -->
+  <div class="bg-gray-100 w-xl gap-1 px-2 py-1 flex justify-center items-center rounded cursor-alias">
+    <span>Click 👉</span>
     <button
       type="button"
-      class="px-15 py-1 bg-green-600 rounded-md flex hover:bg-green-700 active:bg-green-300 transition-colors duration-300 ease-in-out"
-      @click="handleModalOpen"
-    >
+      class="px-15 py-1 bg-green-600 cursor-pointer rounded-md flex hover:bg-green-700 active:bg-green-300 transition-colors duration-300 ease-in-out"
+      @click="handleModalOpen">
       <span class="text-white">Todo Text</span>
     </button>
+
     <button
       type="submit"
       title="Add todo 📆"
-      class="px-2 py-1 rounded-md flex transition-colors duration-300 ease-in-out"
+      class="flex px-2 py-1 rounded-md transition-colors duration-300 ease-in-out"
       :class="
         todosStore.isLoading || todoText.trim().length <= 4
           ? 'bg-gray-500 cursor-not-allowed'
           : 'bg-green-600  hover:bg-green-700 active:bg-green-300 cursor-pointer'
       "
       :disabled="todosStore.isLoading || !todoText"
-      @click="() => handleCreateTodo(todoText.trim())"
-    >
+      @click="() => handleCreateTodo(todoText.trim())">
       <ph-arrow-clockwise v-if="todosStore.isLoading" class="text-white animate-spin" />
       <ph-plus v-else class="text-white" />
     </button>
+
   </div>
 </template>

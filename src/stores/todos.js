@@ -13,7 +13,7 @@ export const useTodosStore = defineStore('todos', () => {
   const isLoading = ref(false)
   const todos = ref([])
   const selectedTodos = ref([])
-  const isOpen = ref(false)
+  const isOpen = ref(true)
 
   const uncompletedTodos = computed(() => todos.value.filter((todo) => !todo.completed))
   const completedTodos = computed(() => todos.value.filter((todo) => todo.completed))

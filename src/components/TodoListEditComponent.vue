@@ -56,22 +56,21 @@ const handleCancelEdit = () => {
 
       <div class="flex items-center gap-2">
         <span>{{ props.todo.id }}</span>
-        <!-- <span>{{ props.todo.sequence }}</span> -->
 
-        <div class="flex items-center gap-1 m -2 px-1 py-0 bg-amber-300 rounded">
+        <div class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
           <input v-model="props.todo.sequence" class="gap-1 outline-none" type="number" min="1" />
           <div class="flex gap-1">
             <button
-              class="flex items-center w-3 h-3 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
+              class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
               @click="handleEdit()"
             >
-              <ph-check></ph-check>
+              <ph-check class="w-3 h-3 text-white"></ph-check>
             </button>
             <button
-              class="flex items-center w-3 h-3 bg-red-400 rounded cursor-pointer hover:bg-red-500 active:bg-red-600 transition duration-150 ease-in-out"
+              class="flex items-center px-1 py-0.5 bg-red-400 rounded cursor-pointer hover:bg-red-500 active:bg-red-600 transition duration-150 ease-in-out"
               @click="handleCancelEdit()"
               >
-              <ph-x class=""></ph-x>
+              <ph-x class="w-3 h-3 text-white"></ph-x>
             </button>
           </div>
         </div>
@@ -86,14 +85,14 @@ const handleCancelEdit = () => {
             <input v-model="editedText" class="outline-none" />
             <div class="flex items-center gap-1">
               <button
-                @click="handleEdit"
                 class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
+                @click="handleEdit"
               >
                 <ph-check class="w-3 h-3 text-white" />
               </button>
               <button
-                @click="handleCancelEdit"
                 class="flex items-center px-1 py-0.5 bg-red-400 rounded cursor-pointer hover:bg-red-500 active:bg-red-600 transition duration-150 ease-in-out"
+                @click="handleCancelEdit"
               >
                 <ph-x class="w-3 h-3 text-white" />
               </button>

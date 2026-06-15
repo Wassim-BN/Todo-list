@@ -19,6 +19,7 @@ const props = defineProps({
 
 const isEditing = ref(false)
 const editedText = ref(props.todo.text)
+const editedSequence = ref(props.todo.sequence)
 
 const handleEdit = async () => {
   if (editedText.value.trim().length <= 4) return
@@ -27,17 +28,18 @@ const handleEdit = async () => {
     props.todo.id,
     editedText.value,
     props.todo.completed,
-    props.todo.sequence,
+    editedSequence.value,
   )
   await todosStore.fetchTodos()
   isEditing.value = false
   editedText.value = props.todo.text
-  
+  editedSequence.value = props.todo.sequence
 }
 
 const handleCancelEdit = () => {
   isEditing.value = false
   editedText.value = props.todo.text
+  editedSequence.value = props.todo.sequence
 }
 </script>
 
@@ -57,8 +59,8 @@ const handleCancelEdit = () => {
       <div class="flex items-center gap-2">
         <span>{{ props.todo.id }}</span>
 
-        <div class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
-          <input v-model="props.todo.sequence" class="gap-1 outline-none" type="number" min="1" />
+        <div class="flex items-center gap-1 w px-1 py-0 bg-amber-300 rounded">
+          <input v-model="editedSequence" class="gap-1 outline-none" type="number" min="1" />
           <div class="flex gap-1">
             <button
               class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"

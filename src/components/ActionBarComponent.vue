@@ -4,11 +4,9 @@ import { PhTrash, PhPlus, PhArrowClockwise } from '@phosphor-icons/vue'
 
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
-import ModalComponent from '@/components/ModalComponent.vue'
 
 const todoText = ref('')
 const todosStore = useTodosStore()
-const isOpen = ref(todosStore.isOpen)
 
 const handleCreateTodo = async (text) => {
   if (text.trim().length <= 4) return
@@ -22,7 +20,7 @@ const handleDeleteSelectedItems = () => {
 }
 
 const handleModalOpen = () => {
-  todosStore.isOpen.value = true
+  todosStore.isOpen = true
 }
 
 </script>
@@ -47,9 +45,10 @@ const handleModalOpen = () => {
     <button
       type="button"
       class="px-15 py-1 bg-green-600 cursor-pointer rounded-md flex hover:bg-green-700 active:bg-green-300 transition-colors duration-300 ease-in-out"
-      @click="handleModalOpen">
+      @click="handleModalOpen()">
       <span class="text-white">Todo Text</span>
     </button>
+
 
     <button
       type="submit"

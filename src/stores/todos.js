@@ -13,7 +13,7 @@ export const useTodosStore = defineStore('todos', () => {
   const isLoading = ref(false)
   const todos = ref([])
   const selectedTodos = ref([])
-  const isOpen = ref(true)
+  const isOpen = ref(false)
 
   const uncompletedTodos = computed(() => todos.value.filter((todo) => !todo.completed))
   const completedTodos = computed(() => todos.value.filter((todo) => todo.completed))
@@ -27,8 +27,8 @@ export const useTodosStore = defineStore('todos', () => {
     return todos.value.length + 1
   }
 
-  const addItem = (todoText) => {
-    const newTodo = { id: newId(), text: todoText, completed: false }
+  const addItem = (todoText, sequence, completed) => {
+    const newTodo = { id: newId(), text: todoText, sequence: sequence, completed: completed }
     todos.value.push(newTodo)
   }
 
@@ -72,12 +72,6 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  //   selectedTodos.value.forEach((todoId) => {
-  //     removeItem(todoId)
-  //   })
-  //   selectedTodos.value = []
-  // }
-
   const fetchTodos = async () => {
     try {
       const data = await useFetchTodos()
@@ -89,10 +83,11 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const createTodo = async (text) => {
+  const createTodo = async (text, sequence, completed) => {
     isLoading.value = true
     try {
-      const newTodo = await useCreateTodo(text)
+      const newTodo = await useCreateTodo(text, sequence, completed)
+      todos.value.push(newTodo)
     } catch (error) {
       //
     } finally {
@@ -126,6 +121,7 @@ export const useTodosStore = defineStore('todos', () => {
     isLoading,
     todos,
     selectedTodos,
+    isOpen,
     uncompletedTodos,
     completedTodos,
     addItem,

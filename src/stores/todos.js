@@ -6,6 +6,7 @@ import {
   useCreateTodo,
   useEditTodo,
   useDeleteTodo,
+  useDeleteSelectedTodos,
   // useValidTodo,
 } from '@/composables/useTodos'
 

@@ -16,6 +16,8 @@ const handleCreateTodo = async (text, sequence, completed) => {
 const handleSubmit = async () => {
   await handleCreateTodo(todoText.value.trim(), todoSequence.value, todoCompleted.value)
   todoText.value = ''
+  todoSequence.value = 0
+  todoCompleted.value = false
   todosStore.isOpen = false
 }
 

@@ -15,8 +15,8 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div>
-    <ul class="flex flex-col gap-2 w-xl overflow-y-scroll max-h-72 justify-center items-center">
+  <div class="mx-auto p-4 rounded-shadow">
+    <ul class="flex flex-col gap-2 w-xl overflow-y-scroll justify-center items-center">
       <li
         v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos"
         :key="todo.id"

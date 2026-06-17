@@ -18,7 +18,7 @@ export const useTodosStore = defineStore('todos', () => {
 
   const uncompletedTodos = computed(() => todos.value.filter((todo) => !todo.completed))
   const completedTodos = computed(() => todos.value.filter((todo) => todo.completed))
-  
+
   function newId() {
     for (let i = 1; i <= todos.value.length; i++) {
       if (!todos.value.some((todo) => todo.id === i)) {
@@ -61,11 +61,12 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const deleteSelectedItems = () => {
+  const deleteSelectedItems = async () => {
     isLoading.value = true
     try {
-      useDeleteSelectedTodos(selectedTodos.value)
+      await useDeleteSelectedTodos(selectedTodos.value)
       selectedTodos.value = []
+      await fetchTodos()
     } catch (error) {
       //
     } finally {

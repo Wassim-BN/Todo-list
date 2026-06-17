@@ -52,15 +52,17 @@ const handleCancelEdit = () => {
         <input
           type="checkbox"
           class="cursor-pointer z-10"
+          :checked="todosStore.selectedTodos.includes(todo.id)"
           @change="() => todosStore.toggleSelectedItem(todo.id)"
         />
       </div>
 
       <div class="flex items-center gap-2">
         <span>{{ props.todo.id }}</span>
-
-        <div class="flex items-center gap-1 w px-1 py-0 bg-amber-300 rounded">
-          <input v-model="editedSequence" class="gap-1 outline-none" type="number" min="1" />
+        <span> -> </span>
+        <span class="text-blue-800" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
+        <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
+          <input v-model="editedSequence" class="gap-1 outline-none w-20" type="number" min="1" @keyup.enter="handleEdit"/>
           <div class="flex gap-1">
             <button
               class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
@@ -84,7 +86,7 @@ const handleCancelEdit = () => {
 
         <div>
           <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
-            <input v-model="editedText" class="outline-none" />
+            <input v-model="editedText" class="outline-none" @keyup.enter="handleEdit" />
             <div class="flex items-center gap-1">
               <button
                 class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
@@ -100,7 +102,7 @@ const handleCancelEdit = () => {
               </button>
             </div>
           </div>
-          <span v-else @click="() => (isEditing = true)" class="px-1">{{ props.todo.text }}</span>
+          <span v-else @click="() => (isEditing = true)" class="px-1 wrap-break-word">{{ props.todo.text }}</span>
         </div>
       </div>
     </div>

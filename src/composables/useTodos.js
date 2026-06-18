@@ -13,10 +13,10 @@ export const useFetchTodos = async () => {
   return await res.json()
 }
 
-export const useCreateTodo = async (text, sequence, completed) => {
+export const useCreateTodo = async (text, completed, sequence) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-  const body = JSON.stringify({ text: text, sequence: sequence, completed: completed })
+  const body = JSON.stringify({ text: text, completed: completed, sequence: sequence })
   const res = await fetch(`${backendUrl}/todos`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

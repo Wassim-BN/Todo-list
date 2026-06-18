@@ -97,10 +97,10 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const editTodo = async (id, text, completed, sequence) => {
+  const editTodo = async (id, text, sequence, completed) => {
     isLoading.value = true
     try {
-      await useEditTodo(id, text, completed, sequence)
+      await useEditTodo(id, text, sequence, completed)
     } catch (error) {
       //
     } finally {

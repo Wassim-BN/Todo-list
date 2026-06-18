@@ -7,14 +7,15 @@ const todoSequence = ref(0)
 const todoCompleted = ref(false)
 const todosStore = useTodosStore()
 
-const handleCreateTodo = async (text, sequence, completed) => {
+const handleCreateTodo = async (text, completed, sequence) => {
   if (text.trim().length <= 4) return
-  await todosStore.createTodo(text, sequence, completed)
+  if (sequence < 0) return
+  await todosStore.createTodo(text, completed, sequence)
   await todosStore.fetchTodos()
 }
 
 const handleSubmit = async () => {
-  await handleCreateTodo(todoText.value.trim(), todoSequence.value, todoCompleted.value)
+  await handleCreateTodo(todoText.value.trim(), todoCompleted.value, todoSequence.value)
   todoText.value = ''
   todoSequence.value = 0
   todoCompleted.value = false

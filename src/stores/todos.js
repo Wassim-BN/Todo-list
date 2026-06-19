@@ -85,10 +85,10 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const createTodo = async (text, sequence, completed) => {
+  const createTodo = async (text, completed, sequence) => {
     isLoading.value = true
     try {
-      const newTodo = await useCreateTodo(text, sequence, completed)
+      const newTodo = await useCreateTodo(text, completed, sequence)
       todos.value.push(newTodo)
     } catch (error) {
       //
@@ -97,10 +97,10 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const editTodo = async (id, text, sequence, completed) => {
+  const editTodo = async (id, text, completed, sequence) => {
     isLoading.value = true
     try {
-      await useEditTodo(id, text, sequence, completed)
+      await useEditTodo(id, text, completed, sequence)
     } catch (error) {
       //
     } finally {

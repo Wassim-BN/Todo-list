@@ -62,7 +62,7 @@ const handleCancelEdit = () => {
         <span> -> </span>
         <span class="text-blue-800" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
         <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
-          <input v-model="editedSequence" class="gap-1 outline-none w-20" type="number" min="1" @keyup.enter="handleEdit"/>
+          <input v-model="editedSequence" class="gap-1 outline-none w-15" type="number" min="1" @keyup.enter="handleEdit"/>
           <div class="flex gap-1">
             <button
               class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"

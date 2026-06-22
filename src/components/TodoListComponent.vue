@@ -15,13 +15,15 @@ const props = defineProps({
 })
 </script>
 <template>
-  <div class="mx-auto p-4 rounded-shadow">
+  <div class="mx-auto p-4 rounded-shadow" @drop="todosStore.onDrop" @dragover.prevent>
     <ul class="flex flex-col gap-2 w-xl overflow-y-scroll justify-center items-center">
       <li
-        v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos"
-        :key="todo.id"
         class="px-2 py-1 w-full flex justify-center items-center bg-green-100 rounded"
         draggable="true"
+        v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos"
+        :key="todo.id"
+        :class="{ 'bg-green-100': !todo.completed, 'bg-red-100': todo.completed }"
+        :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }"
       >
         <todo-list-edit-component :todo="todo" />
       </li>

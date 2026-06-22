@@ -23,6 +23,7 @@ const editedSequence = ref(props.todo.sequence)
 
 const handleEdit = async () => {
   if (editedText.value.trim().length <= 4) return
+  if (todosStore.uniqueTodo(editedSequence.value)) return
 
   await todosStore.editTodo(
     props.todo.id,

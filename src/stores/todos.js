@@ -10,23 +10,6 @@ import {
   // useValidTodo,
 } from '@/composables/useTodos'
 
-// export default {
-//   //
-//   methods: {
-//     startDrag(evt, todo) {
-//       evt.dataTransfer.dropEffect = 'move'
-//       evt.dataTransfer.effectAllowed = 'move'
-//       evt.dataTransfer.setData('todoID', todo.id)
-//     },
-//     onDrop(event, list) {
-//       const todoID = event.dataTransfer.getData('todoID')
-//       const todo = this.todos.find((todo) => todo.id === todoID)
-//       todo.list = list
-//       this.updateTodo(todo)
-//     },
-//   },
-// }
-
 export const useTodosStore = defineStore('todos', () => {
   const isLoading = ref(false)
   const todos = ref([])

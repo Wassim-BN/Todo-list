@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import { PhTrash, PhCheck, PhWarning, PhDotsThreeVertical } from '@phosphor-icons/vue'
 
 // Stores
@@ -21,7 +21,7 @@ const props = defineProps({
 })
 
 const handleDelete = async () => {
-  await todosStore.deleteTodo(props.todo.id)
+  await todosStore.deleteTodo(props.todo.id, props.todo.sequence)
   await todosStore.fetchTodos()
 }
 

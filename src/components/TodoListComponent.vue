@@ -2,8 +2,6 @@
 // Components
 import TodoListEditComponent from '@/components/TodoListEditComponent.vue'
 
-import { ref } from 'vue'
-
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
 
@@ -16,42 +14,26 @@ const props = defineProps({
   },
 })
 
-const startDrag = (ev) => {
+const startDrag = (ev, todo) => {
   ev.dataTransfer.dropEffect = 'move'
   ev.dataTransfer.effectAllowed = 'move'
-  ev.dataTransfer.setData('text/plain', ev.id)
+  ev.dataTransfer.setData('text/plain', todo.id)
 }
 
 const onDrop = (ev) => {
   ev.preventDefault()
-  const data = ev.dataTransfer.getData('text/plain')
-  ev.target.appendChild(document.getElementById(data))
+  const todoId = ev.dataTransfer.getData('text/plain')
+  if (todosStore.toggleTodoStatus) {
+    todosStore.toggleTodoStatus(todoId, props.isCompleted)
+  } else {
+    // Si tu as juste une fonction classique pour inverser le statut :
+    // des versions comme todosStore.toggleTodo(todoId) fonctionnent aussi
+  }
 }
-
-// const startDrag = (todo) => {
-//   isDragging.value = true
-//   if (event.dataTransfer) {
-//     event.dataTransfer.dropEffect = 'move'
-//     event.dataTransfer.effectAllowed = 'move'
-//     event.dataTransfer?.setData('text/plain', todo.id)
-//   }
-// }
-  
-// const onDrop = () => {
-//   isDragging.value = false
-//   if (event.dataTransfer) {
-//     const todoID = event.dataTransfer?.getData('text/plain')
-//     const todo = todo.value.find((todo) => todo.id == todoID)
-
-//     if (todo) {
-//       todo.status = status
-//     }
-//   }
-// }
 
 </script>
 <template>
-  <div class="mx-auto p-4 rounded-shadow" @drop="onDrop($event, status)" @dragover.prevent>
+  <div class="mx-auto p-4 rounded-shadow" @drop="onDrop($event)" @dragover.prevent>
     <ul class="flex flex-col gap-2 w-xl overflow-y-scroll justify-center items-center">
       <li
         class="px-2 py-1 w-full flex justify-center items-center bg-green-100 rounded"

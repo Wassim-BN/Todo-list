@@ -10,7 +10,9 @@ const todosStore = useTodosStore()
 const handleCreateTodo = async (text, completed, sequence) => {
   if (text.trim().length <= 4) return
   if (sequence < 0) return
-  if (todosStore.uniqueTodo(sequence)) return
+  if (todosStore.uniqueTodo(sequence)) {
+    return alert('La séquence existe déjà')
+  } 
 
   await todosStore.createTodo(text, completed, sequence)
   await todosStore.fetchTodos()

@@ -47,6 +47,22 @@ export const useEditTodo = async (id, text, completed, sequence) => {
   return await res.json()
 }
 
+export const useUpdateTodo = async (todo) => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL
+  const body = JSON.stringify(todo)
+  const res = await fetch(`${backendUrl}/todos/${todo.id}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: body,
+  })
+
+  if (!res.ok) {
+    throw new Error(`Failed to update todo: ${res.status}`)
+  }
+
+  return await res.json()
+}
+
 export const useDeleteTodo = async (id) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 

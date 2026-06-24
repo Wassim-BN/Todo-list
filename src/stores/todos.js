@@ -7,7 +7,7 @@ import {
   useEditTodo,
   useDeleteTodo,
   useDeleteSelectedTodos,
-  // useValidTodo,
+  useUpdateTodo,
 } from '@/composables/useTodos'
 
 export const useTodosStore = defineStore('todos', () => {
@@ -15,7 +15,7 @@ export const useTodosStore = defineStore('todos', () => {
   const todos = ref([])
   const selectedTodos = ref([])
   const isOpen = ref(false)
-
+  
   const uncompletedTodos = computed(() => todos.value.filter((todo) => !todo.completed))
   const completedTodos = computed(() => todos.value.filter((todo) => todo.completed))
 
@@ -58,6 +58,15 @@ export const useTodosStore = defineStore('todos', () => {
       } else {
         selectedTodos.value.push(todoId)
       }
+    }
+  }
+
+  const toggleTodoStatus = async (todoId, targetIsCompleted) => {
+    const todo = this.todos.find(t => t.id === parseInt(todoId) || t.id === todoId)
+    if (todo) {
+      todo.completed = targetIsCompleted
+      await useUpdateTodo(todo)
+      await fetchTodos()
     }
   }
 
@@ -135,6 +144,7 @@ export const useTodosStore = defineStore('todos', () => {
     addSelectedItem,
     toggleItemStatus,
     toggleSelectedItem,
+    toggleTodoStatus,
     deleteSelectedItems,
     fetchTodos,
     createTodo,

@@ -18,7 +18,9 @@ const handleModalOpen = () => {
 <template>
   <!-- Action -->
   <div class="bg-green-100 w-xl gap-1 m-1.5 p-1.5 flex justify-between items-center rounded prl-2">
-    <div><span>Actions</span></div>
+    <div class="flex gap-1">
+      <span>Actions</span>
+    </div>
     <div class="flex gap-1">
       <div class="text-sm font-bold">{{ todosStore.selectedTodos.length }} sélectionné(s)</div>
       <button

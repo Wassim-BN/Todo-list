@@ -25,14 +25,12 @@ const onDrop = (ev) => {
   const todoId = ev.dataTransfer.getData('text/plain')
   if (todosStore.toggleTodoStatus) {
     todosStore.toggleTodoStatus(todoId, props.isCompleted)
-  } else {
-    // Si tu as juste une fonction classique pour inverser le statut :
-    // des versions comme todosStore.toggleTodo(todoId) fonctionnent aussi
-  }
+  } 
 }
 
 </script>
 <template>
+  <!-- Unordered list of todos -->
   <div class="mx-auto p-4 rounded-shadow" @drop="onDrop($event)" @dragover.prevent>
     <ul class="flex flex-col gap-2 w-xl overflow-y-scroll justify-center items-center">
       <li

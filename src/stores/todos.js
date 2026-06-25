@@ -1,16 +1,20 @@
+// imports function from vue
 import { ref, computed } from 'vue'
+// Store definition from pinia
 import { defineStore } from 'pinia'
 
+// import composables
 import {
   useFetchTodos,
   useCreateTodo,
   useEditTodo,
   useDeleteTodo,
   useDeleteSelectedTodos,
-  useUpdateTodo,
 } from '@/composables/useTodos'
 
+// export store definition
 export const useTodosStore = defineStore('todos', () => {
+  // Variables of the store
   const isLoading = ref(false)
   const todos = ref([])
   const selectedTodos = ref([])
@@ -27,7 +31,7 @@ export const useTodosStore = defineStore('todos', () => {
     }
     return todos.value.length + 1
   }
-
+  // 
   const addItem = (todoText, sequence, completed) => {
     const newTodo = { id: newId(), text: todoText, sequence: sequence, completed: completed }
     todos.value.push(newTodo)
@@ -65,8 +69,6 @@ export const useTodosStore = defineStore('todos', () => {
     const todo = this.todos.find(t => t.id === parseInt(todoId) || t.id === todoId)
     if (todo) {
       todo.completed = targetIsCompleted
-      await useUpdateTodo(todo)
-      await fetchTodos()
     }
   }
 

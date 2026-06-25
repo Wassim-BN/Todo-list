@@ -18,9 +18,11 @@ const props = defineProps({
 })
 
 const isEditing = ref(false)
+// Collect edited values
 const editedText = ref(props.todo.text)
 const editedSequence = ref(props.todo.sequence)
 
+// Handle edit submission
 const handleEdit = async () => {
   if (editedText.value.trim().length <= 4) return
   if (todosStore.uniqueTodo(editedSequence.value)) return
@@ -37,6 +39,7 @@ const handleEdit = async () => {
   editedSequence.value = props.todo.sequence
 }
 
+// Handle cancel edit
 const handleCancelEdit = () => {
   isEditing.value = false
   editedText.value = props.todo.text
@@ -59,18 +62,22 @@ const handleCancelEdit = () => {
       </div>
 
       <div class="flex items-center gap-2">
+        <!-- Todo ID -->
         <span>{{ props.todo.id }}</span>
         <span> -> </span>
-        <span class="text-blue-800" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
+        <!-- Todo sequence -->
+        <span class="text-blue-800 cursor-pointer" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
         <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
           <input v-model="editedSequence" class="gap-1 outline-none w-15" type="number" min="1" @keyup.enter="handleEdit"/>
           <div class="flex gap-1">
+            <!-- Save button -->
             <button
               class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
               @click="handleEdit()"
             >
               <ph-check class="w-3 h-3 text-white"></ph-check>
             </button>
+            <!-- Cancel button -->
             <button
               class="flex items-center px-1 py-0.5 bg-red-400 rounded cursor-pointer hover:bg-red-500 active:bg-red-600 transition duration-150 ease-in-out"
               @click="handleCancelEdit()"
@@ -81,20 +88,24 @@ const handleCancelEdit = () => {
         </div>
 
         <div>
+          <!-- Icon indicating completion status -->
           <ph-check v-if="props.todo.completed" class="text-green-600" />
           <ph-warning v-else class="text-yellow-600" />
         </div>
 
         <div>
           <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
+            <!-- Input field for editing todo text with keyboard shortcut (@keyup) -->
             <input v-model="editedText" class="outline-none" @keyup.enter="handleEdit" />
             <div class="flex items-center gap-1">
+              <!-- Save button for editing todo text -->
               <button
                 class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
                 @click="handleEdit"
               >
                 <ph-check class="w-3 h-3 text-white" />
               </button>
+              <!-- Cancel button for editing todo text -->
               <button
                 class="flex items-center px-1 py-0.5 bg-red-400 rounded cursor-pointer hover:bg-red-500 active:bg-red-600 transition duration-150 ease-in-out"
                 @click="handleCancelEdit"
@@ -103,7 +114,8 @@ const handleCancelEdit = () => {
               </button>
             </div>
           </div>
-          <span v-else @click="() => (isEditing = true)" class="px-1 wrap-break-word">{{ props.todo.text }}</span>
+          <!-- Todo text when not editing -->
+          <span v-else @click="() => (isEditing = true)" class="px-1 cursor-pointer">{{ props.todo.text }}</span>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+// Fetch information from the backend
 export const useFetchTodos = async () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL
 
@@ -42,22 +43,6 @@ export const useEditTodo = async (id, text, completed, sequence) => {
 
   if (!res.ok) {
     throw new Error(`Failed to edit todo: ${res.status}`)
-  }
-
-  return await res.json()
-}
-
-export const useUpdateTodo = async (todo) => {
-  const backendUrl = import.meta.env.VITE_BACKEND_URL
-  const body = JSON.stringify(todo)
-  const res = await fetch(`${backendUrl}/todos/${todo.id}`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: body,
-  })
-
-  if (!res.ok) {
-    throw new Error(`Failed to update todo: ${res.status}`)
   }
 
   return await res.json()

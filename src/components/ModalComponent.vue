@@ -2,11 +2,13 @@
 import { ref } from 'vue'
 import { useTodosStore } from '@/stores/todos.js'
 
+// Variables
 const todoText = ref('')
 const todoSequence = ref(0)
 const todoCompleted = ref(false)
 const todosStore = useTodosStore()
 
+// Function to handle creating a todo
 const handleCreateTodo = async (text, completed, sequence) => {
   if (text.trim().length <= 4) return
   if (sequence < 0) return
@@ -18,6 +20,7 @@ const handleCreateTodo = async (text, completed, sequence) => {
   await todosStore.fetchTodos()
 }
 
+// Function to handle submitting the form
 const handleSubmit = async () => {
   await handleCreateTodo(todoText.value.trim(), todoCompleted.value, todoSequence.value)
   todoText.value = ''
@@ -26,12 +29,14 @@ const handleSubmit = async () => {
   todosStore.isOpen = false
 }
 
+// Function to close the modal
 const closeModal = () => {
   todosStore.isOpen = false
 }
 </script>
 
 <template>
+  <!-- Modal content -->
   <div v-if="todosStore.isOpen" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-xl h-50 bg-blue-500 rounded-xl border shadow z-99">
     <div class="flex justify-center items-center">
       <span class="p-2 font-size-xl underline">Todo Text</span>
@@ -46,6 +51,7 @@ const closeModal = () => {
     </div>
 
     <div class="flex justify-center p-4 gap-4">
+      <!-- Button to submit the form -->
       <button 
         class="items-center text-white px-2 py-1 cursor-pointer rounded border transition duration-150 ease-in-out" 
         @click="handleSubmit" 
@@ -54,6 +60,7 @@ const closeModal = () => {
       >
         Ajouter
       </button>
+      <!-- Button to close the modal -->
       <button class="items-center px-2 py-1 cursor-pointer rounded border bg-gray-300 hover:bg-gray-400 transition duration-300 ease-in-out" @click="closeModal">
         Fermer
       </button>

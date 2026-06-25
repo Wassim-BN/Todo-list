@@ -6,14 +6,16 @@ import { useTodosStore } from '@/stores/todos.js'
 
 const todosStore = useTodosStore()
 
+// Function to delete selected items
 const handleDeleteSelectedItems = async () => {
   await todosStore.deleteSelectedItems()
-  // await todosStore.fetchTodos()
 }
 
+// Function to open the modal
 const handleModalOpen = () => {
   todosStore.isOpen = true
 }
+
 </script>
 <template>
   <!-- Action -->
@@ -21,6 +23,7 @@ const handleModalOpen = () => {
     <div class="flex gap-1">
       <span>Actions</span>
     </div>
+    <!-- Delete button -->
     <div class="flex gap-1">
       <div class="text-sm font-bold">{{ todosStore.selectedTodos.length }} sélectionné(s)</div>
       <button
@@ -42,7 +45,6 @@ const handleModalOpen = () => {
   <div
     class="bg-gray-100 w-xl gap-1 px-2 py-1 flex justify-center items-center rounded cursor-alias"
   >
-    <span>Click 👉</span>
     <button
       type="button"
       title="Add todo 📆"
@@ -51,20 +53,5 @@ const handleModalOpen = () => {
     >
       <span class="text-white">Todo Text</span>
     </button>
-
-    <!-- <button
-      type="submit"
-      title="Add todo 📆"
-      class="flex px-2 py-1 rounded-md transition-colors duration-300 ease-in-out"
-      :class="
-        todosStore.isLoading || todoText.trim().length <= 4
-          ? 'bg-gray-500 cursor-not-allowed'
-          : 'bg-green-600  hover:bg-green-700 active:bg-green-300 cursor-pointer'
-      "
-      :disabled="todosStore.isLoading || !todoText"
-      @click="() => handleCreateTodo(todoText.trim())">
-      <ph-arrow-clockwise v-if="todosStore.isLoading" class="text-white animate-spin" />
-      <ph-plus v-else class="text-white" />
-    </button> -->
   </div>
 </template>

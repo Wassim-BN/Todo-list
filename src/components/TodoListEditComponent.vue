@@ -52,7 +52,7 @@ const handleCancelEdit = () => {
     <div class="flex items-center gap-2">
       <!-- Checkbox -->
       <div class="relative flex items-center gap-2 rounded-2xl">
-        <ph-dots-six-vertical class="text-gray-600 cursor-grab" />
+        <ph-dots-six-vertical class="text-gray-600 cursor-grab active:cursor-grabbing" />
         <input
           type="checkbox"
           class="cursor-pointer z-10"
@@ -66,7 +66,6 @@ const handleCancelEdit = () => {
         <span>{{ props.todo.id }}</span>
         <span> -> </span>
         <!-- Todo sequence -->
-        <span class="text-blue-800 cursor-pointer" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
         <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
           <input v-model="editedSequence" class="gap-1 outline-none w-15" type="number" min="1" @keyup.enter="handleEdit"/>
           <div class="flex gap-1">
@@ -86,6 +85,7 @@ const handleCancelEdit = () => {
             </button>
           </div>
         </div>
+        <span v-else class="text-blue-800 cursor-pointer" @click="() => (isEditing = true)">N°{{ props.todo.sequence }}</span>
 
         <div>
           <!-- Icon indicating completion status -->

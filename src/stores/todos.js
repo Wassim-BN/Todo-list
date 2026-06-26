@@ -65,13 +65,6 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
-  const toggleTodoStatus = async (todoId, targetIsCompleted) => {
-    const todo = this.todos.find(t => t.id === parseInt(todoId) || t.id === todoId)
-    if (todo) {
-      todo.completed = targetIsCompleted
-    }
-  }
-
   const deleteSelectedItems = async () => {
     isLoading.value = true
     try {
@@ -146,7 +139,6 @@ export const useTodosStore = defineStore('todos', () => {
     addSelectedItem,
     toggleItemStatus,
     toggleSelectedItem,
-    toggleTodoStatus,
     deleteSelectedItems,
     fetchTodos,
     createTodo,

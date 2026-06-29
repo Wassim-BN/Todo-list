@@ -115,7 +115,9 @@ const handleCancelEdit = () => {
             </div>
           </div>
           <!-- Todo text when not editing -->
-          <span v-else @click="() => (isEditing = true)" class="px-1 cursor-pointer">{{ props.todo.text }}</span>
+          <div v-else class="max-w-[200px] sm:max-w-[300px]">
+            <span @click="() => (isEditing = true)" class="px-1 cursor-pointer block truncate">{{ props.todo.text }}</span>
+          </div>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 <script setup>
 // Components
 import TodoListEditComponent from '@/components/TodoListEditComponent.vue'
-
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
 
@@ -17,10 +16,10 @@ const props = defineProps({
 </script>
 <template>
   <!-- Unordered list of todos -->
-  <div class="mx-auto p-4 rounded-shadow min-h-[200px] w-xl rounded-lg">
-    <ul class="flex flex-col gap-2 w-full overflow-y-scroll justify-center items-center">
+  <div class="mx-auto min-h-[200px] w-xl">
+    <ul class="flex flex-col gap-2 min-h-[200px] w-full pt-4 overflow-y-scroll items-center">
       <li
-        class="px-2 py-1 w-full flex justify-center items-center bg-green-100 rounded"
+        class="px-2 py-1 w-full flex justify-center items-center rounded hover:-translate-y-1 duration-200 ease-in-out shadow hover:shadow-md"
         draggable="true"
         v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos"
         :key="todo.id"

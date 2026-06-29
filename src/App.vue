@@ -24,7 +24,6 @@ onMounted(() => {
     <main class="flex flex-col items-center gap-2 w-screen h-screen overflow-hidden">
       <ModalComponent /> 
       <DarkThemeComponent />
-      <TitleComponent />
       <ActionComponent />
       <h1 class="flex bg-gray-200 w-xl rounded px-2 py-1 justify-center">A faire 💻</h1>
       <TodoComponent />

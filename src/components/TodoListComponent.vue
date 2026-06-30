@@ -17,7 +17,7 @@ const props = defineProps({
 <template>
   <!-- Unordered list of todos -->
   <div class="mx-auto min-h-[200px] w-xl">
-    <ul class="flex flex-col gap-2 max-h-[200px] w-full pt-4 overflow-y-scroll items-center">
+    <ul class="flex flex-col gap-2 max-h-[300px] w-full pt-4 overflow-y-scroll items-center">
       <li
         class="px-2 py-1 w-full flex justify-center items-center rounded hover:-translate-y-1 duration-200 ease-in-out shadow hover:shadow-md"
         draggable="true"

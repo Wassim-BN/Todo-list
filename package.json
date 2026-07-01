@@ -1,5 +1,5 @@
 {
-  "name": "Simple TODO",
+  "name": "simple_todo",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -17,11 +17,12 @@
   "dependencies": {
     "@phosphor-icons/vue": "^2.2.1",
     "@tailwindcss/vite": "^4.3.0",
+    "@vueuse/components": "^14.3.0",
     "@vueuse/core": "^14.3.0",
     "pinia": "^3.0.4",
     "tailwindcss": "^4.3.0",
     "vue": "beta",
-    "vuedraggable": "^4.1.0"
+    "vue-draggable-plus": "^0.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

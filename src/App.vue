@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>        
-    <main class="flex flex-col items-center gap-2 w-screen h-screen overflow-hidden">
+    <main class="flex flex-col items-center gap-2 w-screen h-screen">
       <ModalComponent /> 
       <DarkThemeComponent />
       <ActionComponent />

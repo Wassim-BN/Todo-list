@@ -65,6 +65,10 @@ export const useTodosStore = defineStore('todos', () => {
     }
   }
 
+  const selectAllTodos = () => {
+    selectedTodos.value = todos
+  }
+
   const deleteSelectedItems = async () => {
     isLoading.value = true
     try {
@@ -139,6 +143,7 @@ export const useTodosStore = defineStore('todos', () => {
     addSelectedItem,
     toggleItemStatus,
     toggleSelectedItem,
+    selectAllTodos,
     deleteSelectedItems,
     fetchTodos,
     createTodo,

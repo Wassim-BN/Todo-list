@@ -1,14 +1,21 @@
 <script setup>
-import { PhTrash } from '@phosphor-icons/vue'
+import { PhTrash, PhDotsThreeVertical } from '@phosphor-icons/vue'
+import { ref } from 'vue'
 
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
 
 const todosStore = useTodosStore()
+const isActionsMenuOpen = ref(false)
 
 // Function to delete selected items
 const handleDeleteSelectedItems = async () => {
   await todosStore.deleteSelectedItems()
+}
+
+// Toggle the actions menu
+const toggleActionsMenu = () => {
+  isActionsMenuOpen.value = !isActionsMenuOpen.value
 }
 
 // Function to open the modal
@@ -24,8 +31,8 @@ const handleModalOpen = () => {
       <span>Actions</span>
     </div>
     <!-- Delete button -->
-    <div class="flex gap-1">
-      <div class="text-sm font-bold">{{ todosStore.selectedTodos.length }} sélectionné(s)</div>
+    <div class=" relative flex gap-3">
+      <span class="text-sm font-bold">{{ todosStore.selectedTodos.length }} sélectionné(s)</span>
       <button
         title="Delete the selection 🗑️"
         class="bg-red-600 hover:bg-red-700 px-2 py-1 rounded active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
@@ -39,6 +46,21 @@ const handleModalOpen = () => {
       >
         <PhTrash class="text-white" />
       </button>
+      <!-- Action menu button -->
+      <button
+        @click="toggleActionsMenu"
+        class="cursor-pointer w- z-10 hover:bg-gray-200 rounded-xl active:bg-gray-300 transition-colors duration-300 ease-in-out"
+      >
+        <ph-dots-three-vertical />
+      </button>
+      <div
+        v-if="isActionsMenuOpen"
+        class="absolute flex w-35 -top-1 left-45 rounded shadow px-2 py-1"
+      >
+        <button class="rounded bg-gray-300 hover:bg-gray-400 active:bg-gray-200">
+          Tout sélectionnée          
+        </button>
+      </div>
     </div>
   </div>
   <!-- Todo Text -->

@@ -5,10 +5,6 @@ import { useTodosStore } from '@/stores/todos'
 
 const todosStore = useTodosStore()
 
-const onEnd = (event) => {
-  console.log("end")
-}
-
 const props = defineProps({
   isCompleted: {
     type: Boolean,
@@ -20,14 +16,12 @@ const props = defineProps({
 
 <template>
   <VueDraggable
-    v-model="todosStore.todos"
-    animation="200"
+    class=" overflow-y-scroll h-50"
+    animation="100"
     ghost-class="ghost"
-    @end="onEnd"
   >
-    <div class="w-xl flex flex-col gap-1 max-h-[300px] w-full pt-4 items-center" v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos">
+    <div class="flex flex-col gap-1 max-h-37.5 w-full pt-4 items-center" v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos" :key="todo.id">
       <div
-        :key="todo.id"
         class="px-2 py-1 w-xl flex justify-center items-center rounded hover:-translate-y-1 duration-150 ease-in-out shadow hover:shadow-md"
         :class="{ 'bg-green-100': !todo.completed, 'bg-red-100': todo.completed }"
         :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }"

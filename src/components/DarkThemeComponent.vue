@@ -17,7 +17,7 @@ const toggleDark = useToggle(isDark)
         class="px-2 py-1 rounded active:bg-gray-300 cursor-pointer transition-colors duration-300 ease-in-out"
         :class="
         isDark
-            ? 'bg-yellow-600 hover:bg-yellow-700 active:bg-yellow-300 shadow-md shadow-white cursor-pointer'
+            ? 'bg-yellow-400 hover:bg-yellow-600 active:bg-yellow-300 shadow-md shadow-yellow-600 cursor-pointer'
             : 'bg-gray-600 hover:bg-gray-700 active:bg-gray-300 shadow-md shadow-black cursor-pointer'
         "
         @click="toggleDark()">

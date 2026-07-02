@@ -63,8 +63,8 @@ const handleCancelEdit = () => {
 
       <div class="flex items-center gap-2">
         <!-- Todo ID -->
-        <span>{{ props.todo.id }}</span>
-        <span class="w-5"> -> </span>
+        <!-- <span>{{ props.todo.id }}</span>
+        <span class="w-5"> -> </span> -->
         <!-- Todo sequence -->
         <div v-if="isEditing" class="flex items-center gap-1 px-1 py-0 bg-amber-300 rounded">
           <input v-model="editedSequence" class="gap-1 outline-none w-15" type="number" min="1" @keyup.enter="handleEdit"/>
@@ -115,7 +115,7 @@ const handleCancelEdit = () => {
             </div>
           </div>
           <!-- Todo text when not editing -->
-          <div v-else class="max-w-[200px] sm:max-w-[300px]">
+          <div v-else class="max-w-50 sm:max-w-75">
             <span @click="() => (isEditing = true)" class="px-1 cursor-pointer block truncate">{{ props.todo.text }}</span>
           </div>
         </div>

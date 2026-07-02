@@ -2,7 +2,6 @@
 import { onMounted } from 'vue'
 
 // Components
-import TitleComponent from '@/components/TitleComponent.vue'
 import ActionComponent from '@/components/ActionBarComponent.vue'
 import TodoComponent from '@/components/TodoListComponent.vue'
 import ModalComponent from '@/components/ModalComponent.vue'
@@ -21,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>        
-    <main class="flex flex-col items-center gap-2 w-screen h-screen">
+    <main class="flex flex-col pb-10 items-center gap-2 w-screen h-screen">
       <ModalComponent /> 
       <DarkThemeComponent />
       <ActionComponent />

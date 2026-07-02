@@ -46,6 +46,7 @@ const handleEditTodo = async () => {
     >
       <ph-dots-three-vertical />
     </button>
+    <!-- Action Menu -->
     <div
       v-if="isActionsMenuOpen"
       class="absolute flex gap-2 -top-2 -left-25 bg-white rounded shadow px-2 py-1 z-10"
@@ -53,7 +54,7 @@ const handleEditTodo = async () => {
       <!-- Delete todo button -->
       <button
         @click="() => handleDelete(props.todo.id)"
-        class="px-2 py-1 bg-red-400 rounded hover:bg-red-500 active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out group"
+        class="px-2 py-1 bg-red-400 rounded hover:bg-red-500 active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
       >
         <ph-trash class="text-white group-hover:text-gray-300" />
       </button>

@@ -37,11 +37,11 @@ const closeModal = () => {
 
 <template>
   <!-- Modal content -->
-  <div v-if="todosStore.isOpen" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-xl h-50 bg-blue-500 rounded-xl border shadow z-99">
+  <div v-if="todosStore.isOpen" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-xl h-50 bg-blue-800 text-white rounded-xl border border-solid-black shadow z-99">
     <div class="flex justify-center items-center">
-      <span class="p-2 font-size-xl underline">Todo Text</span>
+      <h2 class="p-2 font-size-xl underline">Todo Text</h2>
     </div>
-    <div class="flex justify-center items-center p-4 gap-4">
+    <div class="flex justify-center items-center p-4 gap-4 text-black">
       <input type="text" class="bg-sky-200 px-2 py-1 border rounded-3xl w-50 outline-none" v-model="todoText" placeholder="Ajouter une tâche" />
       <input type="number" min="1" class="bg-sky-200 px-2 py-1 border rounded w-15 outline-none" placeholder="N°" v-model="todoSequence"/>
       <div class="flex justify-center items-center gap-4 bg-sky-200 rounded border px-2 py-1">
@@ -61,7 +61,7 @@ const closeModal = () => {
         Ajouter
       </button>
       <!-- Button to close the modal -->
-      <button class="items-center px-2 py-1 cursor-pointer rounded border bg-gray-300 hover:bg-gray-400 transition duration-300 ease-in-out" @click="closeModal">
+      <button class="items-center px-2 py-1 cursor-pointer rounded border bg-gray-300 text-black hover:bg-gray-400 transition duration-300 ease-in-out" @click="closeModal">
         Fermer
       </button>
     </div>

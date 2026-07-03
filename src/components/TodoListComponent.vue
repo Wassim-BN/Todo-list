@@ -22,7 +22,7 @@ const props = defineProps({
   >
     <div class="flex flex-col gap-1 max-h-37.5 w-full pt-4 items-center" v-for="todo in props.isCompleted ? todosStore.completedTodos : todosStore.uncompletedTodos" :key="todo.id">
       <div
-        class="px-2 py-1 w-xl flex justify-center items-center rounded hover:-translate-y-1 duration-150 ease-in-out shadow hover:shadow-md"
+        class="px-2 py-1 w-140 flex justify-center items-center rounded hover:-translate-y-1 duration-150 ease-in-out shadow hover:shadow-md"
         :class="{ 'bg-green-100': !todo.completed, 'bg-red-100': todo.completed }"
         :style="{ textDecoration: todo.completed ? 'line-through' : 'none' }"
       >

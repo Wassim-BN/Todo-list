@@ -1,10 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import { PhCheck, PhWarning, PhX, PhDotsSixVertical } from '@phosphor-icons/vue'
-
 // Components
 import ActionBarContextMenuComponent from '@/components/ActionBarContextMenuComponent.vue'
-
 // Stores
 import { useTodosStore } from '@/stores/todos.js'
 
@@ -101,7 +99,7 @@ const handleCancelEdit = () => {
               <!-- Save button for editing todo text -->
               <button
                 class="flex items-center px-1 py-0.5 bg-green-400 rounded cursor-pointer hover:bg-green-500 active:bg-green-600 transition duration-150 ease-in-out"
-                @click="handleEdit"
+                @click="handleEdit()"
               >
                 <ph-check class="w-3 h-3 text-white" />
               </button>

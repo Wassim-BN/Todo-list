@@ -42,7 +42,7 @@ const handleEditTodo = async () => {
     <!-- Action context menu button -->
     <button
       @click="toggleActionsMenu"
-      class="cursor-pointer z-10 hover:bg-gray-200 rounded-2xl active:bg-gray-300 transition-colors duration-300 ease-in-out"
+      class="cursor-pointer z-10 hover:bg-gray-200 rounded-xl active:bg-gray-300 transition-colors duration-300 ease-in-out"
     >
       <ph-dots-three-vertical />
     </button>
@@ -53,14 +53,14 @@ const handleEditTodo = async () => {
     >
       <!-- Delete todo button -->
       <button
-        @click="() => handleDelete(props.todo.id)"
+        @click="() => handleDelete()"
         class="px-2 py-1 bg-red-400 rounded hover:bg-red-500 active:bg-red-300 cursor-pointer transition-colors duration-300 ease-in-out"
       >
         <ph-trash class="text-white group-hover:text-gray-300" />
       </button>
       <!-- Edit todo button -->
       <button
-        @click="() => handleEditTodo(props.todo.id)"
+        @click="() => handleEditTodo()"
         class="px-2 py-1 cursor-pointer transition-colors duration-300 ease-in-out group"
         :class="
           props.todo.completed

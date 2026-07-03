@@ -66,7 +66,7 @@ export const useTodosStore = defineStore('todos', () => {
   }
 
   const selectAllTodos = () => {
-    selectedTodos.value = todos
+    selectedTodos.value.push(todos)
   }
 
   const deleteSelectedItems = async () => {
